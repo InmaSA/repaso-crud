@@ -15,9 +15,12 @@ router.get('/new', (req, res, next) => {
   
 })
 
-// router.post('/new', (req, res, next) =>{
-  
-// })
+router.post('/new', (req, res, next) =>{
+  const {name, description, inversions, length, park_id} = req.body
+//  console.log({name, description, inversions, length, park_id})
+
+  Coaster.create({name, description, inversions, length, park_id})
+})
 
 
 
