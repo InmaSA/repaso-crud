@@ -4,6 +4,9 @@ const router = express.Router()
 const Park = require('../models/park.model')
 const Coaster = require('../models/coaster.model')
 
+router.get('/', (req, res, next) => res.render('coasters/coasters-index'))
+
+
 router.get('/new', (req, res, next) => {
 
   Park.find()
