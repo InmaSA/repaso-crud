@@ -4,7 +4,6 @@ const router = express.Router()
 const Park = require('../models/park.model')
 const Coaster = require('../models/coaster.model')
 
-router.get('/', (req, res, next) => res.render('coasters/coasters-index'))
 
 
 router.get('/new', (req, res, next) => {
@@ -21,8 +20,14 @@ router.get('/new', (req, res, next) => {
 router.post('/new', (req, res, next) =>{
   const {name, description, inversions, length, park_id} = req.body
 //  console.log({name, description, inversions, length, park_id})
-
   Coaster.create({name, description, inversions, length, park_id})
+})
+
+router.get('/', (req, res, next) => {
+
+  Coaster.find()
+  .populate('park_id')
+  .then(allTheCoasters => res.render('coasters/coasters-index', {allTheCoasters}))
 })
 
 
